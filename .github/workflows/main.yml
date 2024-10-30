@@ -1,0 +1,16 @@
+on: [ push, pull_request ]
+jobs:
+  CompileProject:
+    container: docker://epitechcontent/epitest-docker:devel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build project
+        run: make
+  UnitTests:
+    container: docker://epitechcontent/epitest-docker:devel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build project
+        run: make tests_run
